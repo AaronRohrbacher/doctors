@@ -1,0 +1,5 @@
+require 'sinatra'
+require 'sinatra/reloader'
+require './lib/doctor'
+require './lib/patient'
+require 'pg'
