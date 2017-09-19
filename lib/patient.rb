@@ -12,8 +12,16 @@ class Patient
   end
 
   def self.all
-    @list = DB.exec("SELECT * FROM patients")
+    DB.exec("SELECT * FROM patients")
     # id = @list.fetch("id").to_i()
   end
+
+  def sort_pat
+    DB.exec("SELECT * FROM patients ORDER BY name;")
+  end
+
+  # def doc_id
+  #   DB.exec("SELECT * FROM doctors WHERE name = #{@doctor_id};")
+  # end
 
 end

@@ -1,0 +1,46 @@
+<div class='jumbotron'>
+  <h1>Hospital Registrar</h1>
+</div>
+
+<h2>Add Doctor</h2>
+<form action="/" method="post">
+  <div class="form-group">
+    <label for="doc_name">Doctor Name</label>
+    <input id="doc_name" name="doc_name" class="form-control" type="text">
+
+    <label for = "doc_spec">Specialty:</label>
+    <select class = "form-control" name = "doc_spec">
+    <% @specialty.each do |specialties| %>
+      <option value ="<%= specialties.fetch("id") %>"><%= specialties.fetch("name") %></option>
+    <% end %>
+  </select>
+  </div>
+  <button type='submit' class='btn btn-info'>Add Doctor</button>
+</form>
+
+<% @doctor.each do |doctor| %>
+  <h4><a href="/names/<%= doctor.fetch('id') %>"><%= doctor.fetch('name') %></a></h4>
+<% end %><br><br>
+
+<h2>Add Patient</h2>
+<form action="/patient" method="post">
+  <div class="form-group">
+    <label for="doc_name">Patient Name</label>
+    <input id="pat_name" name="pat_name" class="form-control" type="text">
+
+    <label for="birthday">Enter Birthday</label>
+    <input id="birthday" name="birthday" class="form-control" type="text">
+
+    <label for = "doc_name">Available Doctors:</label>
+    <select class = "form-control" name = "doc_id">
+    <% @doctor.each do |doctors| %>
+      <option value ="<%= doctors.fetch("id") %>"><%= doctors.fetch("name") %></option>
+    <% end %>
+  </select>
+  </div>
+  <button type='submit' class='btn btn-info'>Add Patient</button>
+</form>
+
+<% @patient.each do |patient| %>
+  <h4><a href="/names/<%= patient.fetch('id') %>"><%= patient.fetch('name') %></a></h4>
+<% end %><br><br>

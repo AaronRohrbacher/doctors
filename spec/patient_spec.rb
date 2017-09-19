@@ -38,14 +38,14 @@ describe(Patient) do
 
   describe("#doctor_id") do
     it('connects a patient to a doctor') do
-      doctor = Doctor.new({:name => "Dr. Feelgood"})
+      doctor = Doctor.new({:name => "Dr. Rohrbacher", :specialty_id => 1})
       doctor.save
       doctor_id = Doctor.all[0].fetch("id").to_i
       patient = Patient.new({:name => "Tiffany", :birthday => "1970-02-01", :doctor_id => doctor_id})
       patient.save
       doctor_id = Patient.all[0].fetch("doctor_id").to_i
       query = DB.exec("SELECT * FROM doctors WHERE id = #{doctor_id};")
-      expect(query[0].fetch("name")).to(eq("Dr. Feelgood"))
+      expect(query[0].fetch("name")).to(eq("Dr. Rohrbacher"))
     end
   end
 
